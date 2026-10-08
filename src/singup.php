@@ -7,10 +7,11 @@ require('../config/database.php');
     $m_phone = $_POST ['Pnumber'];
     $e_mail =  $_POST ['email'];
     $p_asseword = $_POST ['pswd'];
+    $pass_enc = md5($p_asseword);
 
     $sql="
     insert into users (firstname, lastname, mobile_phone, email, password)
-    values ( '$f_name', '$l_name', '$m_phone', '$e_mail', '$p_asseword')
+    values ( '$f_name', '$l_name', '$m_phone', '$e_mail', '$pass_enc')
     ";
 
     $local_res=pg_query($local_conn,$sql);
@@ -31,6 +32,10 @@ require('../config/database.php');
         echo"<br>Error inserting data into database";
 
     }
+
+    echo "<scripy>alert('User has been created successfully')</script>";
+    header("refresh:0;url=signin.html");
+    
 
 
 

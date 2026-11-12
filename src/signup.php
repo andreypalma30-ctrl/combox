@@ -9,10 +9,10 @@ require('../config/database.php');
     $p_asseword = $_POST ['pswd'];
 
     $sql_validation ="
-        s SELECT
+         SELECT
             u.email
           FROM 
-            users.u
+            users u
           WHERE    
             u.email = '$e_mail' 
     ";
@@ -29,7 +29,7 @@ require('../config/database.php');
         insert into users (firstname, lastname, mobile_phone, email, password)
         values ( '$f_name', '$l_name', '$m_phone', '$e_mail', '$p_asseword')
         ";
-    }
+    
 
     $supabase_res=pg_query($supabase_conn,$sql);
 
@@ -40,6 +40,7 @@ require('../config/database.php');
     } else{
         echo"<br>Error inserting data into database";
 
+    }
     }
 
     /*if($local_res){
